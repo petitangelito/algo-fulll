@@ -1,11 +1,12 @@
 <?php
 
-$fizzbuzzStarter = [
+$fizzbuzzConfigs = [
     ['N' => 1000, 'config' => [3 => 'Fizz', 5 => 'Buzz', 11 => 'Pop']],
 ];
 
 $start_time = microtime(true);
-foreach ($fizzbuzzStarter as $fizzBuzzConfig) {
+
+foreach ($fizzbuzzConfigs as $fizzBuzzConfig) {
     for ($iterator = 1; $iterator <= $fizzBuzzConfig['N']; ++$iterator) {
         $print = '';
         foreach ($fizzBuzzConfig['config'] as $divider => $expression) {
@@ -14,7 +15,7 @@ foreach ($fizzbuzzStarter as $fizzBuzzConfig) {
             }
         }
 
-        echo ($print == '' ? $iterator : $print)."\r\n";
+        echo ($print === '' ? $iterator : $print) . "\r\n";
     }
 }
 

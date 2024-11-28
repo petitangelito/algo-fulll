@@ -1,11 +1,11 @@
 # Algo-fulll
 
-Pour cette partie algorithmique j'ai choisi de présenter quatres algo différents.
+Pour cette partie algorithmique, j'ai choisi de présenter quatre algorithmes différents.
 
 ## Classic FizzBuzz
 
-Le premier est un FizzBuzz des plus classique.
-L'accent est mis sur la simplificé à maintenir ce code et a ce qu'il soit le plus lisible possible.
+Le premier est un FizzBuzz classique.
+L'accent est mis sur la simplicité de la maintenance de ce code et sur sa lisibilité.
 
 
 ```php
@@ -19,37 +19,38 @@ for ($iterator = 1; $iterator <= $N; ++$iterator) {
         $print .= 'Buzz';
     }
 
-    echo ($print == '' ? $iterator : $print)."\r\n";
+    echo ($print === '' ? $iterator : $print) . "\r\n";
 }
+
 ```
 
 Vous pourrez trouver son implémentation complète dans le fichier `fizzbuzz.php`.
 
 ## Onliner FizzBuzz
 
-Ce FizzBuzz est simplement une version compréssée de l'algorithme précédent.
-Le seul interet étant qu'il est plus compéressé, 
-il est toutefois moins intuitif à relire et sera légérement plus difficile à maintenir.
+Ce FizzBuzz est une version compressée de l'algorithme précédent.
+Le seul intérêt réside dans sa concision. Cependant, il est moins intuitif à relire et légèrement plus difficile à maintenir.
 
 ```php
 for ($iterator = 0; $iterator++ < $N;) {
-    echo ($iterator % $firstNumber ? '' : 'Fizz').($iterator % $secondNumber ? '' : 'Buzz') ?: $iterator,"\n";
+    echo ($iterator % $firstNumber ? '' : 'Fizz') . ($iterator % $secondNumber ? '' : 'Buzz') ?: $iterator, "\n";
 }
+
 ```
 
 Vous pourrez trouver son implémentation complète dans le fichier `fizzbuzzonliner.php`.
 
 ## Scalable FizzBuzz
 
-Ce FizzBuzz est une version plus évoluée et plus scalable du premier FizzBuzz.
-Il reste simple à maintenir, l'intéret et de permettre un controle total du résultat en fonction du paramétrage.
+Ce FizzBuzz est une version plus évoluée et plus évolutive du premier.
+Il reste simple à maintenir et permet un contrôle total du résultat en fonction du paramétrage.
 
 ```php
-$fizzbuzzStarter = [
+$fizzbuzzConfigs = [
     ['N' => 1000, 'config' => [3 => 'Fizz', 5 => 'Buzz', 11 => 'Pop']],
 ];
 
-foreach ($fizzbuzzStarter as $fizzBuzzConfig) {
+foreach ($fizzbuzzConfigs as $fizzBuzzConfig) {
     for ($iterator = 1; $iterator <= $fizzBuzzConfig['N']; ++$iterator) {
         $print = '';
         foreach ($fizzBuzzConfig['config'] as $divider => $expression) {
@@ -58,7 +59,7 @@ foreach ($fizzbuzzStarter as $fizzBuzzConfig) {
             }
         }
 
-        echo ($print == '' ? $iterator : $print)."\r\n";
+        echo ($print === '' ? $iterator : $print) . "\r\n";
     }
 }
 ```
@@ -67,10 +68,10 @@ Vous pourrez trouver son implémentation complète dans le fichier `fizzbuzzscal
 
 ## Recurcive FizzBuzz
 
-Ce FizzBuzz est une version recurcive du FizzBuzz.
+Ce FizzBuzz est une version récursive du FizzBuzz (parce que pourquoi pas).
 
 ```php
-function fizzBuzzRecurcive(int $max, int $current = 1, int $firstNumber = 3, int $secondNumber = 5): void
+function fizzBuzzRecursive(int $max, int $current = 1, int $firstNumber = 3, int $secondNumber = 5): void
 {
     $print = '';
     if (!($current % $firstNumber)) {
@@ -81,17 +82,16 @@ function fizzBuzzRecurcive(int $max, int $current = 1, int $firstNumber = 3, int
         $print .= 'Buzz';
     }
 
-    echo ($print == '' ? $current : $print)."\r\n";
-    if ($current >= $max) {
-        return;
-    } else {
-        fizzBuzzRecurcive($max, ++$current);
+    echo ($print === '' ? $current : $print) . "\r\n";
+
+    if ($current < $max) {
+        fizzBuzzRecursive($max, ++$current);
     }
 }
 
 $N = 1000;
 
-fizzBuzzRecurcive($N);
+fizzBuzzRecursive($N);
 ```
 
 Vous pourrez trouver son implémentation complète dans le fichier `fizzbuzzrecurcive.php`.
